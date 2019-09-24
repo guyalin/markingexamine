@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.markingsystem.dao.ArticleExamineDao">
+    <update id="updateArticleMarking"></update>
+
+
+    <select id="queryArticleByType" resultType="com.woniu.markingsystem.bean.Article">
+          select article_id as articleId,
+                 article_name as articleName,
+                 author,
+                 book_id as bookId,
+                 examine_count as examineCount
+          from t_examine_article
+          where book_id = #{type}
+          order by article_id;
+
+    </select>
+
+
+    <select id="queryReviewerByType" resultType="com.woniu.markingsystem.bean.Reviewer">
+        select reviewer_id as reviewerId,
+               name,
+               book_id as examineBook
+        from t_examine_reviewer
+        where book_id = #{type}
+        order by reviewer_id;
+    </select>
+
+    <select id="queryBooksForAuto" resultType="com.woniu.markingsystem.bean.Book">
+        select book_id as bookId,
+               book_name as bookName,
+               examine_kind as examineKind
+        from t_examine_book
+        where examine_kind = 1
+    </select>
+</mapper>
