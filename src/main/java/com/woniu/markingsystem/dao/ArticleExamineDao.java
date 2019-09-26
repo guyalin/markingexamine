@@ -16,5 +16,5 @@ public interface ArticleExamineDao {
 
     void updateArticleMarking(int articleId, float score);
 
-    List<Book> queryBooksForAuto();
+    List<Book> queryBooksForAutoExamine();
 }

@@ -23,10 +23,10 @@
                book_id as examineBook
         from t_examine_reviewer
         where book_id = #{type}
-        order by reviewer_id;
+        order by RAND();
     </select>
 
-    <select id="queryBooksForAuto" resultType="com.woniu.markingsystem.bean.Book">
+    <select id="queryBooksForAutoExamine" resultType="com.woniu.markingsystem.bean.Book">
         select book_id as bookId,
                book_name as bookName,
                examine_kind as examineKind

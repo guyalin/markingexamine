@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/net")
+@RequestMapping("/examine")
 public class ExamineMarkingController {
 
     @Autowired
     private ArticleExamineService articleExamineService;
 
-    @GetMapping(value = "/examine/distribute")
+    @GetMapping(value = "/distribute")
     public JsonResult loadNetNewsArticleToDB(){
         JsonResult jsonResult = new JsonResult();
         try {
