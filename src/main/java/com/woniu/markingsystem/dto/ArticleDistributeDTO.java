@@ -1,5 +1,6 @@
 package com.woniu.markingsystem.dto;
 
+import com.woniu.markingsystem.po.ArticleDistributePo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,5 +15,23 @@ public class ArticleDistributeDTO implements Serializable {
     private String articleName;
     private int bookId;
     private List<Integer> reviewerList = new ArrayList<>();
+
+    public static List<ArticleDistributePo> convertToPos(List<ArticleDistributeDTO> articleDistributeDTOS){
+        List<ArticleDistributePo> articleDistributePos = new ArrayList<>();
+        for (ArticleDistributeDTO articleDistributeDTO : articleDistributeDTOS) {
+            List<String> reviewerListStr = new ArrayList<>();
+            for (Integer i : articleDistributeDTO.getReviewerList()) {
+                reviewerListStr.add(Integer.toString(i));
+            }
+            ArticleDistributePo po = new ArticleDistributePo(
+                    articleDistributeDTO.getArticleId(),
+                    articleDistributeDTO.getArticleName(),
+                    articleDistributeDTO.getBookId(),
+                    String.join(",", reviewerListStr)
+            );
+            articleDistributePos.add(po);
+        }
+        return articleDistributePos;
+    }
 
 }

@@ -1,12 +1,12 @@
 server:
   port: 9090
   servlet:
-    context-path: /v1/gyl
+    context-path: /v1/mark
 spring:
   datasource:
     username: root
     password: 888888
-    url: jdbc:mysql://localhost:3306/dbtest?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/markDb?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&allowMultiQueries=true
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:

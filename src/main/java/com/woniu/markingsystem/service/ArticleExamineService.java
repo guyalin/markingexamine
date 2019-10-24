@@ -1,11 +1,11 @@
 package com.woniu.markingsystem.service;
 
-import com.woniu.markingsystem.dto.ReviewerDistributeDTO;
-
-import java.util.List;
+import java.util.Map;
 
 public interface ArticleExamineService {
 
-    List<ReviewerDistributeDTO> distributeFunction();
+    Map<String, Object> distributeFunction();
+
+    void saveDistributeResult(Map<String, Object> resultMap) throws Exception;
 
 }

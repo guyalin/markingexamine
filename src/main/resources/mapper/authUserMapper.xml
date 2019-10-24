@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniu.markingsystem.dao.AuthUserDao">
+
+    <select id="queryUserByUserId" resultType="com.woniu.markingsystem.entity.auth.AuthUser">
+        select user_id as userId,
+               user_name as userName,
+               password as userPassword,
+               error_times as errorTimes
+        from t_auth_user
+        where user_id = #{userId};
+    </select>
+    <select id="queryUserByUserName" resultType="com.woniu.markingsystem.entity.auth.AuthUser"></select>
+    <select id="queryRoleByUserId" resultType="com.woniu.markingsystem.entity.auth.AuthRole"></select>
+
+    <select id="queryPrivilegeByUserId" resultType="com.woniu.markingsystem.entity.auth.AuthPrivilege">
+        select rp.privilege_id as privilegeId, ap.privilege_name as privilegeName
+        from t_auth_user_role ur, t_auth_role_privilege rp, t_auth_privilege ap
+        where ur.user_id = #{userId}
+          and ur.role_id = rp.role_id
+          and rp.privilege_id = ap.privilege_id
+    </select>
+
+
+</mapper>

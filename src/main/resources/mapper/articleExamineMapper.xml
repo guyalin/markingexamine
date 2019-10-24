@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.woniu.markingsystem.dao.ArticleExamineDao">
-    <update id="updateArticleMarking"></update>
+
+    <insert id="saveArticleDistributeResult" parameterType="list">
+        replace into t_data_article_distribute(article_id, article_name, book_id, reviewer_list)
+        values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.articleId},#{item.articleName},#{item.bookId},#{item.reviewerListStr})
+        </foreach>
+    </insert>
+    <insert id="saveReviewerDistributeResult">
+        replace into t_data_reviewer_distribute(reviewer_id, reviewer_name, book_id, article_list)
+        values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.reviewerId},#{item.reviewerName},#{item.bookId},#{item.articleListStr})
+        </foreach>
+    </insert>
+
+    <update id="updateArticleMarking">
+
+
+    </update>
+    <delete id="clearDistributeResult">
+        truncate table t_data_article_distribute;
+        truncate table t_data_reviewer_distribute;
+    </delete>
 
 
     <select id="queryArticleByType" resultType="com.woniu.markingsystem.bean.Article">
